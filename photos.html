@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photos</title>
+</head>
+
+<body>
+
+<div style="text-align:center;">
+    <a href="index.html">Classmates</a> |
+    <a href="attendance.html">Attendance</a> |
+    <a href="/">Photos</a>
+</div>
+
+<h1>📸 Class Activities</h1>
+
+{% for photo in photos %}
+    <div style="text-align:center;">
+        <img src="{{ url_for('static', filename=photo.file) }}" width="300">
+        <p>{{ photo.caption }}</p>
+    </div>
+{% endfor %}
+
+</body>
+</html>

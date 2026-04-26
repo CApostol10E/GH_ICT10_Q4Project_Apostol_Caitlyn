@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classmates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="nav">
+    <a href="index.html">Classmates</a> |
+    <a href="attendance.html">Attendance</a> |
+    <a href="http://127.0.0.1:5000/">Photos</a>
+</div>
+
+<div class="container">
+    <h1>📘 Grade 10 Classmates</h1>
+
+    <input type="text" id="name" placeholder="Enter name">
+
+    <select id="section">
+        <option value="">Select Section</option>
+        <option>Emerald</option>
+        <option>Ruby</option>
+        <option>Sapphire</option>
+        <option>Topaz</option>
+    </select>
+
+    <input type="text" id="subject" placeholder="Favorite subject">
+
+    <button onclick="addClassmate()">Add</button>
+    <button onclick="showList()">Show List</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+class Classmate {
+    constructor(name, section, subject) {
+        this.name = name;
+        this.section = section;
+        this.subject = subject;
+    }
+
+    introduce() {
+        return `Hi! I am ${this.name} from ${this.section}. My favorite subject is ${this.subject}.`;
+    }
+}
+
+let classmates = [];
+
+function addClassmate() {
+    let name = document.getElementById("name").value;
+    let section = document.getElementById("section").value;
+    let subject = document.getElementById("subject").value;
+
+    if (!name || !section || !subject) {
+        alert("Fill all fields!");
+        return;
+    }
+
+    classmates.push(new Classmate(name, section, subject));
+    alert("Added!");
+
+    document.getElementById("name").value = "";
+    document.getElementById("section").value = "";
+    document.getElementById("subject").value = "";
+}
+
+function showList() {
+    let output = document.getElementById("output");
+    output.innerHTML = "";
+
+    classmates.forEach(c => {
+        output.innerHTML += `<p>${c.introduce()}</p>`;
+    });
+}
+</script>
+
+</body>
+</html>
